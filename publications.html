@@ -1,212 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Publications of Prof. Gaetano Santulli</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    padding-left: 40px; /* Increased left margin */
-    line-height: 1.6;
-  }
+  <meta charset="UTF-8">
+  <title>Publications</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  /* -------------------------
-     Navigation Bar
-  ------------------------- */
-  nav {
-    background-color: #333;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    margin-bottom: 30px;
-  }
-
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-
-  nav li {
-    margin-right: 20px;
-  }
-
-  nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
-
-  nav a:hover {
-    color: #36d1dc; /* light blue hover */
-  }
-
-  p {
-    margin-bottom: 15px;
-  }
-
-  a.pub-link {
-    color: blue;
-    text-decoration: none;
-  }
-
-  a.pub-link:hover {
-    text-decoration: underline;
-    color: darkblue;
-    transition: 0.3s;
-  }
-
-  h2 {
-    color: brown;
-    margin-top: 40px;
-  }
-
-  h3 {
-    margin-top: 20px;
-  }
-
-  ul {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  li {
-    margin-bottom: 20px;
-    transition: transform 0.2s;
-  }
-
-  li:hover {
-    transform: scale(1.02);
-  }
-
-  strong.book-title {
-    color: blue; /* BOOK and CHAPTER titles in blue */
-  }
-
-  strong.journal {
-    color: green; /* Journals in green */
-  }
-
-  u {
-    text-decoration: underline;
-  }
-
-  .page-counter {
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(90deg, #36d1dc, #5b86e5);
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 40px;
-  }
-</style>
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- Navigation Bar -->
+<!-- Navigation -->
 <nav>
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="publications.html">Publications</a></li>
-    <li><a href="clinical-publications.html">Clinical Publications</a></li>
+    <li><a href="clinical.html">Clinical Publications</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
 
-<p style="color:brown; font-weight:bold; font-size:18px;">
-  Peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA
-</p>
+<main style="padding: 30px; max-width: 1100px; margin: auto;">
 
-<p style="margin-bottom:25px;">
-  <a href="#books" style="font-weight:bold;">→ Click here for BOOKS & BOOK CHAPTERS</a>
-</p>
+  <h1>Peer-reviewed Publications</h1>
 
-<div id="publications">
-  <p>Loading publications..</p>
-</div>
+  <!-- PubMed publications -->
+  <section>
+    <h2>Journal Articles</h2>
+    <div id="pubmed-results">
+      <p>Loading publications from PubMed…</p>
+    </div>
+  </section>
 
-<hr style="margin:40px 0;">
+  <hr style="margin:40px 0;">
 
-<h2 id="books">BOOKS & BOOK CHAPTERS</h2>
-<h3 style="margin-top:20px;">BOOKS EDITED BY PROF. SANTULLI</h3>
-<ul id="books-list"></ul>
+  <!-- Books -->
+  <section>
+    <h2>Books</h2>
+    <ul>
+      <li>Mock Book Title 1. Publisher, Year.</li>
+      <li>Mock Book Title 2. Publisher, Year.</li>
+    </ul>
+  </section>
 
-<h3 style="margin-top:30px;">CHAPTERS IN BOOKS AND TEXTBOOKS (Selection)</h3>
-<ul id="chapters-list"></ul>
+  <!-- Chapters -->
+  <section>
+    <h2>Book Chapters</h2>
+    <ul>
+      <li>Mock Chapter Title 1. In: Book Title. Publisher, Year.</li>
+      <li>Mock Chapter Title 2. In: Book Title. Publisher, Year.</li>
+    </ul>
+  </section>
 
-<hr style="margin:40px 0;">
+</main>
 
-<div class="page-counter" id="page-counter">
-  Page Visits: <span id="counter">0</span>
-</div>
-
+<!-- PubMed script -->
 <script>
-// ---------------------------
-// 1. Counter (LocalStorage-based)
-// ---------------------------
-let count = localStorage.getItem('pageCounter') || 5432;
-count++;
-localStorage.setItem('pageCounter', count);
-document.getElementById('counter').textContent = count;
+const PUBMED_QUERY = "Santulli G[Author]";
+const MAX_RESULTS = 200;
 
-// ---------------------------
-// 2. Books & Chapters Data
-// ---------------------------
-const books = [
-  ["Gaetano Santulli","ANGIOGENESIS: INSIGHTS FROM A SYSTEMATIC OVERVIEW","Nova Publishers Inc., New York, NY","2013","978-162618114-4",""],
-  ["Gaetano Santulli","ADRENAL GLANDS: FROM PATHOPHYSIOLOGY TO CLINICAL PRACTICE","Nova Publishers Inc.","2015","978-1634835503",""],
-  ["Gaetano Santulli","MICRORNA: FROM MOLECULAR BIOLOGY TO CLINICAL PRACTICE","Springer","2016","978-3319223797; 978-3319237299; 978-331922670-5",""],
-  ["Gaetano Santulli","MITOCHONDRIAL DYNAMICS IN CARDIOVASCULAR MEDICINE","Springer-Nature","2017","978-3-319-55329-0",""],
-  ["Gaetano Santulli","DIET AND METABOLIC DYSFUNCTION","MDPI","2017","978-3038423225; 978-3038423249",""],
-  ["Gaetano Santulli","CARDIOVASCULAR DISEASE AND DIABETES: A JOURNEY FROM BENCH TO BEDSIDE","Frontiers","2019","978-2889459995",""],
-  ["Gaetano Santulli","CARDIOVASCULAR DISEASE: FROM MOLECULAR MECHANISMS TO CLINICAL THERAPIES","MDPI","2021","978-3036509938",""],
-  ["Claudio De Lucia, Christina Maria Pabelick, Yih-Kuen Jan, Gaetano Santulli, Pierre Denise","METHODS AND APPLICATIONS IN CLINICAL AND TRANSLATIONAL PHYSIOLOGY","Frontiers","2023","978-2832520437",""],
-  ["Gaetano Santulli","TRANSLATIONAL ASPECTS OF CARDIOVASCULAR BIOLOGY: FROM BENCH TO BEDSIDE","MDPI","2023","978-303657575-9",""],
-  ["Gaetano Santulli, Celestino Sardu, Nunzia D’Onofrio","INFLUENCE OF LIFESTYLE FACTORS IN THE MANAGEMENT OF DIABETES MELLITUS","Frontiers Media","2023","978-2-8325-3345-1",""],
-  ["Bruno Trimarco, Gaetano Santulli","DIETARY SUPPLEMENTS IN CARDIOVASCULAR AND METABOLIC DISEASES","MDPI","2024","978-372581295-0",""]
-];
+async function fetchPubMed() {
+  try {
+    const searchURL =
+      "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi" +
+      "?db=pubmed&retmode=json&retmax=" + MAX_RESULTS +
+      "&sort=pub+date&term=" + encodeURIComponent(PUBMED_QUERY);
 
-const chapters = [
-  ["Gaetano Santulli","SYMPATHETIC NERVOUS SYSTEM SIGNALING IN HEART FAILURE AND CARDIAC AGING","Pathophysiology and Pharmacotherapy of Cardiovascular Disease. Springer","2015"],
-  ["Gaetano Santulli","THE ADRENERGIC SYSTEM IN CARDIOVASCULAR METABOLISM AND AGING","The Cardiovascular Adrenergic System. Springer","2015"],
-  ["Gaetano Santulli et al.","ESSENTIAL ROLES OF INTRACELLULAR CALCIUM RELEASE CHANNELS","50th Anniversary of Calcium Channel Research: Biomedical Perspectives. Bentham Science","2015"],
-  ["Michele Ciccarelli, Daniela Sorriento, Enrico Coscioni, Guido Iaccarino, Gaetano Santulli","ADRENERGIC RECEPTORS","Endocrinology of the Heart in Health and Disease. Elsevier","2016"],
-  ["Jessica Gambardella, Bruno Trimarco, Guido Iaccarino, Gaetano Santulli","NEW INSIGHTS IN CARDIAC CALCIUM HANDLING AND EXCITATION–CONTRACTION COUPLING","Heart Failure: From Research to Clinical Practice. Springer-Nature","2017"],
-  ["Daniela Sorriento, Gaetano Santulli et al.","THE N-TERMINAL DOMAIN OF GRK5 INHIBITS CARDIAC HYPERTROPHY THROUGH THE REGULATION OF CA2+/CALMODULIN DEPENDENT TRANSCRIPTION FACTORS","Calcium Signaling in Human Health and Diseases. MDPI","2018"],
-  ["Gaetano Santulli, Daniel Lewis, Andrew Marks, Joachim Frank","RYANODINE RECEPTOR STRUCTURE AND FUNCTION IN HEALTH AND DISEASE","Membrane-bound Macromolecular Protein Complexes: Structure and Function. Springer-Nature","2018"],
-  ["Stanislovas S. Jankauskas, Jessica Gambardella, Urna Kansakar, Scott Wilson, Pasquale Mone, Fahimeh Varzideh, Kwame Donkor, Michael Eacobacci, Ayobami Adebayo, Marco Morelli, John Ferrara, Xujun Wang, Angela Lombardi, Gaetano Santulli","MICRORNA AND DIABETES","MicroRNA: From Bench to Bedside. Elsevier","2022"]
-];
+    const searchResponse = await fetch(searchURL);
+    const searchData = await searchResponse.json();
 
-function renderBooks() {
-  const list = document.getElementById('books-list');
-  books.forEach(b => {
-    const authors = b[0].replace(/Gaetano Santulli/g, '<u>Gaetano Santulli</u>');
-    const li = document.createElement('li');
-    li.innerHTML = `<strong class="book-title">${b[1]}</strong><br><em>${authors}</em><br><strong class="journal">${b[2]}.</strong> ${b[3]}.<br>ISBN: ${b[4]}${b[5] ? `<br>DOI: <a href="https://doi.org/${b[5]}" target="_blank">${b[5]}</a>` : ''}<br>`;
-    list.appendChild(li);
-  });
+    const ids = searchData.esearchresult.idlist;
+    if (!ids || ids.length === 0) {
+      document.getElementById("pubmed-results").innerHTML =
+        "<p>No publications found.</p>";
+      return;
+    }
+
+    const fetchURL =
+      "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi" +
+      "?db=pubmed&retmode=xml&id=" + ids.join(",");
+
+    const fetchResponse = await fetch(fetchURL);
+    const xmlText = await fetchResponse.text();
+
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(xmlText, "text/xml");
+
+    const articles = xml.getElementsByTagName("PubmedArticle");
+    let html = "<ol>";
+
+    for (let article of articles) {
+      const title =
+        article.getElementsByTagName("ArticleTitle")[0]?.textContent || "";
+
+      const journal =
+        article.getElementsByTagName("Title")[0]?.textContent || "";
+
+      const year =
+        article.getElementsByTagName("Year")[0]?.textContent || "";
+
+      const authors = Array.from(
+        article.getElementsByTagName("Author")
+      ).map(a => {
+        const last = a.getElementsByTagName("LastName")[0]?.textContent || "";
+        const initials = a.getElementsByTagName("Initials")[0]?.textContent || "";
+        return last && initials ? `${last} ${initials}` : "";
+      }).filter(Boolean).join(", ");
+
+      let doi = "";
+      const ids = article.getElementsByTagName("ArticleId");
+      for (let id of ids) {
+        if (id.getAttribute("IdType") === "doi") {
+          doi = id.textContent;
+        }
+      }
+
+      html += `
+        <li style="margin-bottom:15px;">
+          <strong>${title}</strong><br>
+          ${authors}<br>
+          <span style="color:green; font-weight:bold;">
+            ${journal.toUpperCase()}
+          </span>
+          (${year})
+          ${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
+        </li>
+      `;
+    }
+
+    html += "</ol>";
+    document.getElementById("pubmed-results").innerHTML = html;
+
+  } catch (error) {
+    document.getElementById("pubmed-results").innerHTML =
+      "<p>Error loading publications.</p>";
+    console.error(error);
+  }
 }
 
-function renderChapters() {
-  const list = document.getElementById('chapters-list');
-  chapters.forEach(c => {
-    const authors = c[0].replace(/Gaetano Santulli/g, '<u>Gaetano Santulli</u>');
-    const li = document.createElement('li');
-    li.innerHTML = `<strong class="book-title">${c[1]}</strong><br><em>${authors}</em><br><strong class="journal">${c[2]}.</strong> ${c[3]}.`;
-    list.appendChild(li);
-  });
-}
-
-// Initialize
-renderBooks();
-renderChapters();
+fetchPubMed();
 </script>
 
 </body>
