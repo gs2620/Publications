@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Team - Prof. Gaetano Santulli</title>
+
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -40,7 +41,7 @@
   }
 
   nav a:hover {
-    color: #36d1dc; /* light blue hover */
+    color: #36d1dc;
   }
 
   /* Page Content */
@@ -52,10 +53,22 @@
 
   h1 {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     color: #333;
   }
 
+  /* PI Section */
+  .pi-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+
+  .pi-card {
+    width: 260px;
+  }
+
+  /* Team Grid */
   .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -75,13 +88,22 @@
     transform: scale(1.05);
   }
 
+  /* Square photos */
   .member-photo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    border-radius: 6px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    margin: 0 auto 12px auto;
     background-color: #ddd;
-    display: inline-block;
-    margin-bottom: 10px;
+  }
+
+  /* Larger PI photo */
+  .pi-photo {
+    width: 140px;
+    height: 140px;
   }
 
   .member-name {
@@ -94,6 +116,21 @@
     color: #555;
   }
 
+  .pi-metrics {
+    font-size: 0.85em;
+    margin-top: 6px;
+  }
+
+  .pi-metrics a {
+    color: #36d1dc;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .pi-metrics a:hover {
+    text-decoration: underline;
+  }
+
   footer {
     text-align: center;
     padding: 20px;
@@ -103,6 +140,7 @@
   }
 </style>
 </head>
+
 <body>
 
 <!-- Navigation Bar -->
@@ -119,107 +157,145 @@
 <!-- Page Content -->
 <div class="content">
   <h1>Meet Our Team</h1>
+
+  <!-- PI Section -->
+  <div class="pi-section">
+    <div class="team-member pi-card">
+      <img src="santulli.jpg" alt="Prof. Gaetano Santulli" class="member-photo pi-photo">
+      <div class="member-name">Prof. Gaetano Santulli</div>
+      <div class="member-role">Principal Investigator</div>
+      <div class="pi-metrics">
+        Hirsch Index: 106 ·
+        <a href="https://scholar.google.com/citations?user=IX4IYaEAAAAJ&hl=en&inst=151474670492416252" target="_blank" rel="noopener noreferrer">
+          Google Scholar
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Members -->
   <div class="team-grid">
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="gambardella.jpg" alt="Dr. Jessica Gambardella" class="member-photo">
       <div class="member-name">Dr. Jessica Gambardella</div>
       <div class="member-role">Assistant Professor</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="jankauskas.jpg" alt="Dr. Stanislovas S. Jankauskas" class="member-photo">
       <div class="member-name">Dr. Stanislovas S. Jankauskas</div>
       <div class="member-role">Assistant Professor</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="mone.jpg" alt="Dr. Pasquale Mone" class="member-photo">
       <div class="member-name">Dr. Pasquale Mone</div>
       <div class="member-role">Assistant Professor</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="varzideh.jpg" alt="Dr. Fahimeh Varzideh" class="member-photo">
       <div class="member-name">Dr. Fahimeh Varzideh</div>
       <div class="member-role">Assistant Professor</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="kansakar.jpg" alt="Dr. Urna Kansakar" class="member-photo">
       <div class="member-name">Dr. Urna Kansakar</div>
       <div class="member-role">Postdoctoral Fellow</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="pande.jpg" alt="Dr. Shivangi Pande" class="member-photo">
       <div class="member-name">Dr. Shivangi Pande</div>
       <div class="member-role">Postdoctoral Fellow</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Grace Wilson</div>
+      <img src="wilkon.jpg" alt="Dr. Grace Wilson" class="member-photo">
+      <div class="member-name">Grace Wilkon</div>
       <div class="member-role">Lab Technician</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Henry Brown</div>
+      <img src="brown.jpg" alt="Dr. Henry Brown" class="member-photo">
+      <div class="member-name">Dr. Hanna Brown</div>
       <div class="member-role">Postdoctoral Fellow</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="martinez.jpg" alt="Dr. Isabella Martinez" class="member-photo">
       <div class="member-name">Dr. Isabella Martinez</div>
       <div class="member-role">Research Scientist</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Jack Thompson</div>
+      <img src="thompson.jpg" alt="Dr. Jack Thompson" class="member-photo">
+      <div class="member-name">Jennifer Thompson</div>
       <div class="member-role">Graduate Student</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Karen White</div>
+      <img src="white.jpg" alt="Dr. Karen White" class="member-photo">
+      <div class="member-name">Karen White</div>
       <div class="member-role">Lab Technician</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="johnson.jpg" alt="Dr. Liam Johnson" class="member-photo">
       <div class="member-name">Dr. Liam Johnson</div>
       <div class="member-role">Postdoctoral Fellow</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="anderson.jpg" alt="Dr. Mia Anderson" class="member-photo">
       <div class="member-name">Dr. Mia Anderson</div>
       <div class="member-role">Research Scientist</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Noah Lee</div>
+      <img src="lee.jpg" alt="Dr. Noah Lee" class="member-photo">
+      <div class="member-name">Noah Lee</div>
       <div class="member-role">Graduate Student</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Olivia Kim</div>
+      <img src="kim.jpg" alt="Dr. Olivia Kim" class="member-photo">
+      <div class="member-name">Olivia Kim</div>
       <div class="member-role">Lab Technician</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="clark.jpg" alt="Dr. Patrick Clark" class="member-photo">
       <div class="member-name">Dr. Patrick Clark</div>
       <div class="member-role">Postdoctoral Fellow</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="evans.jpg" alt="Dr. Quinn Evans" class="member-photo">
       <div class="member-name">Dr. Quinn Evans</div>
       <div class="member-role">Research Scientist</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Rachel Scott</div>
+      <img src="scott.jpg" alt="Dr. Rachel Scott" class="member-photo">
+      <div class="member-name">Rachel Scott</div>
       <div class="member-role">Graduate Student</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
-      <div class="member-name">Dr. Samuel Harris</div>
+      <img src="harris.jpg" alt="Dr. Samuel Harris" class="member-photo">
+      <div class="member-name">Samuel Harris</div>
       <div class="member-role">Lab Technician</div>
     </div>
+
     <div class="team-member">
-      <div class="member-photo"></div>
+      <img src="lewis.jpg" alt="Dr. Tina Lewis" class="member-photo">
       <div class="member-name">Dr. Tina Lewis</div>
       <div class="member-role">Research Scientist</div>
     </div>
+
   </div>
 </div>
 
