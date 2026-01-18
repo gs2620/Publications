@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Clinical Publications – Prof. Gaetano Santulli</title>
+
+<style>
+/* -------------------------
+   Navigation bar
+------------------------- */
+nav {
+  background-color: #333;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #36d1dc;
+}
+
+/* -------------------------
+   Page styling
+------------------------- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding-left: 40px;
+  line-height: 1.6;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: darkblue;
+  text-decoration: underline;
+}
+
+h2 {
+  color: brown;
+  margin-top: 40px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 22px;
+  transition: transform 0.2s;
+}
+
+li:hover {
+  transform: scale(1.02);
+}
+
+strong.journal {
+  color: green;
+}
+
+u {
+  text-decoration: underline;
+}
+
+.page-counter {
+  margin-top: 50px;
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(90deg, #36d1dc, #5b86e5);
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="clinical-publications.html">Clinical Publications</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<p style="color:brown; font-weight:bold; font-size:18px;">
+Clinical (patient-oriented) peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA
+</p>
+
+<div id="publications">
+  <p>Loading clinical publications from PubMed…</p>
+</div>
+
+<div class="page-counter">
+Page Visits: <span id="counter">0</span>
+</div>
+
+<script>
+/* ---------------------------
+   Counter
+--------------------------- */
+let count = localStorage.getItem("clinicalPageCounter") || 1200;
+count++;
+localStorage.setItem("clinicalPageCounter", count);
+document.getElementById("counter").textContent = count;
+
+/* ---------------------------
+   PubMed query (CLINICAL)
+--------------------------- */
+const query =
+"((((((Santulli, G[Author] AND (patients[title/abstract]) NOT (corrigendum[Title]) NOT (spider[Title])) NOT (habitat[Title])) NOT (dogs[Title])) NOT introduction[Title]) NOT (correction[Title]))";
+
+/* ---------------------------
+   Journal replacements
+--------------------------- */
+const replacements = {
+ "ECLINICALMEDICINE":"LANCET eCLINICALMEDICINE",
+ "ISCIENCE":"iSCIENCE",
+ "HYPERTENSION (DALLAS, TEX. : 1979)":"HYPERTENSION",
+ "CELL CYCLE (GEORGETOWN, TEX.)":"CELL CYCLE",
+ "CARDIOVASCULAR DIABETOLOGY. ENDOCRINOLOGY REPORTS":"CARDIOVASCULAR DIABETOLOGY - ENDOCRINOLOGY REPORTS",
+ "NPJ METABOLIC HEALTH AND DISEASE":"NPJ METABOLIC HEALTH AND DISEASE (NATURE PORTFOLIO JOURNAL)",
+ "HYPERTENSION RESEARCH : OFFICIAL JOURNAL OF THE JAPANESE SOCIETY OF HYPERTENSION":"HYPERTENSION RESEARCH",
+ "CELLULAR AND MOLECULAR LIFE SCIENCES : CMLS":"CELLULAR AND MOLECULAR LIFE SCIENCES",
+ "MOLECULAR MEDICINE (CAMBRIDGE, MASS.)":"MOLECULAR MEDICINE",
+ "THE LANCET. HEALTHY LONGEVITY":"THE LANCET HEALTHY LONGEVITY",
+ "THE LANCET. DIABETES & ENDOCRINOLOGY":"THE LANCET DIABETES & ENDOCRINOLOGY",
+ "INTERNATIONAL JOURNAL OF CARDIOLOGY. HEART & VASCULATURE":"INTERNATIONAL JOURNAL OF CARDIOLOGY - HEART & VASCULATURE",
+ "ERJ OPEN RESEARCH":"EUROPEAN RESPIRATORY SOCIETY OPEN RESEARCH",
+ "EUROPEAN HEART JOURNAL. CARDIOVASCULAR PHARMACOTHERAPY":"EUROPEAN HEART JOURNAL - CARDIOVASCULAR PHARMACOTHERAPY",
+ "JOURNAL OF ALZHEIMER'S DISEASE : JAD":"JOURNAL OF ALZHEIMER'S DISEASE",
+ "ANTIOXIDANTS (BASEL, SWITZERLAND)":"ANTIOXIDANTS",
+ "THE JOURNAL OF HEART AND LUNG TRANSPLANTATION : THE OFFICIAL PUBLICATION OF THE INTERNATIONAL SOCIETY FOR HEART TRANSPLANTATION":"JOURNAL OF HEART AND LUNG TRANSPLANTATION",
+ "BIOENGINEERING (BASEL, SWITZERLAND)":"BIOENGINEERING",
+ "PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA":"PNAS USA",
+ "JOURNAL OF CLINICAL HYPERTENSION (GREENWICH, CONN.)":"JOURNAL OF CLINICAL HYPERTENSION",
+ "ACTA PHYSIOLOGICA (OXFORD, ENGLAND)":"ACTA PHYSIOLOGICA",
+ "CRITICAL CARE (LONDON, ENGLAND)":"CRITICAL CARE",
+ "IMMUNITY & AGEING : I & A":"IMMUNITY & AGEING",
+ "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":"HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
+};
+
+/* ---------------------------
+   Fetch PubMed (no cutoff)
+--------------------------- */
+async function fetchPubMed() {
+  const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
+  const s = await (await fetch(esearch)).json();
+
+  const webenv = s.esearchresult.webenv;
+  const key = s.esearchresult.querykey;
+  const total = parseInt(s.esearchresult.count);
+
+  let html = "<ul>";
+  const step = 200;
+
+  for (let i = 0; i < total; i += step) {
+    const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
+    const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
+
+    xml.querySelectorAll("PubmedArticle").forEach(a => {
+      const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
+      if (journalRaw.includes("RESEARCH SQUARE")) return;
+
+      const journal = replacements[journalRaw] || journalRaw;
+      const pmid = a.querySelector("PMID")?.textContent;
+      const title = a.querySelector("ArticleTitle")?.textContent || "";
+      const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
+
+      const authors = [...a.querySelectorAll("Author")]
+        .map(x => `${x.querySelector("ForeName")?.textContent || ""} ${x.querySelector("LastName")?.textContent || ""}`)
+        .join(", ")
+        .replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
+
+      const doi = [...a.querySelectorAll("ArticleId")]
+        .find(x => x.getAttribute("IdType") === "doi")?.textContent;
+
+      html += `
+      <li>
+        <strong>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank">${title}</a>
+        </strong><br>
+        <em>${authors}</em><br>
+        <strong class="journal">${journal}</strong>. ${year}.
+        ${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
+      </li>`;
+    });
+  }
+
+  html += "</ul>";
+  document.getElementById("publications").innerHTML = html;
+}
+
+fetchPubMed();
+</script>
+
+</body>
+</html>
