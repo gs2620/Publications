@@ -2,85 +2,68 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Contact - Prof. Gaetano Santulli</title>
+<title>Contact Prof. Gaetano Santulli</title>
 <link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
 </head>
 <body>
 
-<!-- Navigation Bar -->
-<nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="team.html">Team</a></li>
-    <li><a href="publications.html">Publications</a></li>
-    <li><a href="clinical-publications.html">Clinical Publications</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- Page Content -->
-<div class="content">
-  <h1>Contact Prof. Gaetano Santulli</h1>
-  <p>If you have questions or would like to get in touch, please use the form below.</p>
-
-  <!-- Contact Form -->
-  <form>
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" placeholder="John Doe" style="width:100%; padding:8px; margin-bottom:15px;"><br>
-
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" placeholder="johndoe@example.com" style="width:100%; padding:8px; margin-bottom:15px;"><br>
-
-    <label for="subject">Subject:</label><br>
-    <input type="text" id="subject" name="subject" placeholder="Question about publications" style="width:100%; padding:8px; margin-bottom:15px;"><br>
-
-    <label for="message">Message:</label><br>
-    <textarea id="message" name="message" rows="6" placeholder="Write your message here..." style="width:100%; padding:8px; margin-bottom:15px;"></textarea><br>
-
-    <button type="submit" style="padding:10px 20px; background-color:#36d1dc; color:white; border:none; border-radius:5px; cursor:pointer;">Send</button>
-  </form>
-  
-  <!-- Contact Info -->
-  <p style="margin-top:30px;">
-    <strong>Mock Contact Info:</strong><br>
-    Prof. Gaetano Santulli<br>
-    Medical Professor - CLinical<br> 
-    CUNY School of Medicine<br>
-    Manhattan, NY 10031<br>
-    USA<br>
-    Email: <a href="mailto:gsantulli@example.com">gsantulli@gmail.com</a><br>
-    
-  </p>
-
-  <!-- Donation Section -->
-  <h2 style="margin-top:50px;">Support Our Work / Donate</h2>
-  <p>If you would like to support our research and educational activities, you can donate via PayPal or Venmo:</p>
-
-  <div style="display:flex; gap:30px; flex-wrap: wrap; margin-top:20px;">
-    <!-- PayPal -->
-    <div style="text-align:center;">
-      <a href="https://www.paypal.com/donate?hosted_button_id=MOCKID" target="_blank">
-        <img src="paypal-qr-mock.png" alt="PayPal QR Code" style="width:150px; height:150px; border:1px solid #ccc; border-radius:10px;">
-      </a>
-      <p>PayPal</p>
-    </div>
-
-    <!-- Venmo -->
-    <div style="text-align:center;">
-      <a href="https://venmo.com/MOCKUSERNAME" target="_blank">
-        <img src="venmo-qr-mock.png" alt="Venmo QR Code" style="width:150px; height:150px; border:1px solid #ccc; border-radius:10px;">
-      </a>
-      <p>Venmo</p>
-    </div>
-  </div>
-
+<!-- Top Navigation -->
+<div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="team.html">Team</a>
+  <a href="publications.html">Publications</a>
+  <a href="clinical-publications.html">Clinical Publications</a>
+  <a href="contact.html">Contact</a>
 </div>
 
-<!-- Footer -->
-<footer style="margin-top:50px; text-align:center; color:#777;">
-  &copy; 2026 Prof. Gaetano Santulli
-</footer>
+<h1 style="color:brown;">Contact Prof. Gaetano Santulli</h1>
+
+<p>If you would like to get in touch, please use the information below or send a message via email.</p>
+
+<h2>Email</h2>
+<p><a href="mailto:gsantulli001@gmail.com">gsantulli001@gmail.com</a></p>
+
+<h2>Address</h2>
+<p>123 Cardiology Avenue,<br>New York, NY, 10001, USA</p>
+
+<hr style="margin:40px 0;">
+
+<h2>Donate</h2>
+<p>Your support helps advance our research. You can donate via PayPal or Venmo:</p>
+
+<div style="display:flex; gap:40px; align-items:center;">
+  <!-- PayPal -->
+  <div style="text-align:center;">
+    <p><strong>PayPal</strong></p>
+    <a href="https://www.paypal.com/donate?hosted_button_id=MOCKPAYPALID" target="_blank">
+      <img src="paypal-qr-mock.png" alt="PayPal QR code" style="width:150px;height:150px;">
+    </a>
+  </div>
+
+  <!-- Venmo -->
+  <div style="text-align:center;">
+    <p><strong>Venmo</strong></p>
+    <a href="https://venmo.com/MOCKVENMOID" target="_blank">
+      <img src="venmo-qr-mock.png" alt="Venmo QR code" style="width:150px;height:150px;">
+    </a>
+  </div>
+</div>
+
+<hr style="margin:40px 0;">
+
+<div class="page-counter" id="page-counter">
+  Page Visits: <span id="counter">0</span>
+</div>
+
+<script>
+// ---------------------------
+// Page visit counter (LocalStorage)
+// ---------------------------
+let count = localStorage.getItem('contactPageCounter') || 0;
+count++;
+localStorage.setItem('contactPageCounter', count);
+document.getElementById('counter').textContent = count;
+</script>
 
 </body>
 </html>
