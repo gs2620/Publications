@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Publications of Prof. Gaetano Santulli</title>
+<title>Publications – Prof. Gaetano Santulli</title>
 
 <style>
   body {
@@ -12,17 +12,15 @@
     line-height: 1.6;
   }
 
-  p { margin-bottom: 15px; }
-
   a {
     color: blue;
     text-decoration: none;
+    transition: color 0.3s;
   }
 
   a:hover {
-    text-decoration: underline;
     color: darkblue;
-    transition: 0.3s;
+    text-decoration: underline;
   }
 
   h2 {
@@ -30,7 +28,7 @@
     margin-top: 40px;
   }
 
-  h3 { margin-top: 20px; }
+  h3 { margin-top: 25px; }
 
   ul {
     list-style: none;
@@ -38,25 +36,31 @@
   }
 
   li {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     transition: transform 0.2s;
   }
 
   li:hover { transform: scale(1.02); }
 
-  strong.book-title { color: blue; }
-  strong.journal { color: green; }
+  strong.journal {
+    color: green;
+  }
+
+  strong.book-title {
+    color: blue;
+  }
+
   u { text-decoration: underline; }
 
   .page-counter {
+    margin-top: 50px;
+    padding: 15px;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
     color: white;
     background: linear-gradient(90deg, #36d1dc, #5b86e5);
-    padding: 15px;
     border-radius: 10px;
-    margin-top: 40px;
   }
 </style>
 </head>
@@ -72,64 +76,56 @@ Peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA
 </p>
 
 <div id="publications">
-  <p>Loading publications…</p>
+  <p>Loading publications from PubMed…</p>
 </div>
 
-<hr style="margin:40px 0;">
+<hr style="margin:45px 0;">
 
 <h2 id="books">BOOKS & BOOK CHAPTERS</h2>
 
 <h3>BOOKS EDITED BY PROF. SANTULLI</h3>
 <ul id="books-list"></ul>
 
-<h3 style="margin-top:30px;">CHAPTERS IN BOOKS AND TEXTBOOKS (Selection)</h3>
+<h3>CHAPTERS IN BOOKS AND TEXTBOOKS (Selection)</h3>
 <ul id="chapters-list"></ul>
-
-<hr style="margin:40px 0;">
 
 <div class="page-counter">
   Page Visits: <span id="counter">0</span>
 </div>
 
 <script>
-/* ------------------------------
-   1. Page Counter
------------------------------- */
-let count = localStorage.getItem("pageCounter") || 5432;
-count++;
-localStorage.setItem("pageCounter", count);
-document.getElementById("counter").textContent = count;
+/* ---------------------------
+   Page Counter
+--------------------------- */
+let visits = localStorage.getItem("pageCounter") || 5400;
+visits++;
+localStorage.setItem("pageCounter", visits);
+document.getElementById("counter").textContent = visits;
 
-/* ------------------------------
-   2. Books & Chapters
------------------------------- */
+/* ---------------------------
+   Books & Chapters
+--------------------------- */
 const books = [
- ["Gaetano Santulli","ANGIOGENESIS: INSIGHTS FROM A SYSTEMATIC OVERVIEW","Nova Publishers Inc., New York, NY","2013","978-162618114-4"],
- ["Gaetano Santulli","ADRENAL GLANDS: FROM PATHOPHYSIOLOGY TO CLINICAL PRACTICE","Nova Publishers Inc.","2015","978-1634835503"],
+ ["Gaetano Santulli","ANGIOGENESIS: INSIGHTS FROM A SYSTEMATIC OVERVIEW","Nova Publishers","2013","978-162618114-4"],
+ ["Gaetano Santulli","ADRENAL GLANDS: FROM PATHOPHYSIOLOGY TO CLINICAL PRACTICE","Nova Publishers","2015","978-1634835503"],
  ["Gaetano Santulli","MICRORNA: FROM MOLECULAR BIOLOGY TO CLINICAL PRACTICE","Springer","2016","978-3319223797"],
  ["Gaetano Santulli","MITOCHONDRIAL DYNAMICS IN CARDIOVASCULAR MEDICINE","Springer-Nature","2017","978-3-319-55329-0"],
  ["Gaetano Santulli","DIET AND METABOLIC DYSFUNCTION","MDPI","2017","978-3038423225"],
- ["Gaetano Santulli","CARDIOVASCULAR DISEASE AND DIABETES: A JOURNEY FROM BENCH TO BEDSIDE","Frontiers","2019","978-2889459995"],
+ ["Gaetano Santulli","CARDIOVASCULAR DISEASE AND DIABETES","Frontiers","2019","978-2889459995"],
  ["Gaetano Santulli","CARDIOVASCULAR DISEASE: FROM MOLECULAR MECHANISMS TO CLINICAL THERAPIES","MDPI","2021","978-3036509938"],
- ["Claudio De Lucia et al.","METHODS AND APPLICATIONS IN CLINICAL AND TRANSLATIONAL PHYSIOLOGY","Frontiers","2023","978-2832520437"],
- ["Gaetano Santulli","TRANSLATIONAL ASPECTS OF CARDIOVASCULAR BIOLOGY: FROM BENCH TO BEDSIDE","MDPI","2023","978-303657575-9"],
- ["Gaetano Santulli et al.","INFLUENCE OF LIFESTYLE FACTORS IN THE MANAGEMENT OF DIABETES MELLITUS","Frontiers Media","2023","978-2-8325-3345-1"],
- ["Bruno Trimarco, Gaetano Santulli","DIETARY SUPPLEMENTS IN CARDIOVASCULAR AND METABOLIC DISEASES","MDPI","2024","978-372581295-0"]
+ ["Gaetano Santulli","TRANSLATIONAL ASPECTS OF CARDIOVASCULAR BIOLOGY","MDPI","2023","978-3036575759"]
 ];
 
 const chapters = [
- ["Gaetano Santulli","SYMPATHETIC NERVOUS SYSTEM SIGNALING IN HEART FAILURE AND CARDIAC AGING","Pathophysiology and Pharmacotherapy of Cardiovascular Disease. Springer","2015"],
- ["Gaetano Santulli","THE ADRENERGIC SYSTEM IN CARDIOVASCULAR METABOLISM AND AGING","The Cardiovascular Adrenergic System. Springer","2015"],
- ["Gaetano Santulli et al.","ESSENTIAL ROLES OF INTRACELLULAR CALCIUM RELEASE CHANNELS","Bentham Science","2015"],
+ ["Gaetano Santulli","SYMPATHETIC NERVOUS SYSTEM SIGNALING IN HEART FAILURE AND CARDIAC AGING","Springer","2015"],
+ ["Gaetano Santulli","THE ADRENERGIC SYSTEM IN CARDIOVASCULAR METABOLISM AND AGING","Springer","2015"],
  ["Michele Ciccarelli et al.","ADRENERGIC RECEPTORS","Elsevier","2016"],
- ["Jessica Gambardella et al.","NEW INSIGHTS IN CARDIAC CALCIUM HANDLING","Springer-Nature","2017"],
- ["Daniela Sorriento et al.","THE N-TERMINAL DOMAIN OF GRK5","MDPI","2018"],
- ["Gaetano Santulli et al.","RYANODINE RECEPTOR STRUCTURE AND FUNCTION","Springer-Nature","2018"],
+ ["Jessica Gambardella et al.","NEW INSIGHTS IN CARDIAC CALCIUM HANDLING","Springer","2017"],
  ["Stanislovas S. Jankauskas et al.","MICRORNA AND DIABETES","Elsevier","2022"]
 ];
 
-function renderList(data, elementId, isBook=true) {
-  const list = document.getElementById(elementId);
+function renderStatic(data, id, isbn) {
+  const ul = document.getElementById(id);
   data.forEach(d => {
     const authors = d[0].replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
     const li = document.createElement("li");
@@ -137,65 +133,87 @@ function renderList(data, elementId, isBook=true) {
       <strong class="book-title">${d[1]}</strong><br>
       <em>${authors}</em><br>
       <strong class="journal">${d[2]}</strong>. ${d[3]}.
-      ${isBook ? `<br>ISBN: ${d[4]}` : ""}
+      ${isbn ? `<br>ISBN: ${d[4]}` : ""}
     `;
-    list.appendChild(li);
+    ul.appendChild(li);
   });
 }
 
-renderList(books,"books-list",true);
-renderList(chapters,"chapters-list",false);
+renderStatic(books,"books-list",true);
+renderStatic(chapters,"chapters-list",false);
 
-/* ------------------------------
-   3. PubMed – FULL HISTORY
------------------------------- */
+/* ---------------------------
+   PubMed Fetch (FULL + LINKS)
+--------------------------- */
+const query =
+"((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
+
+const replacements = {
+ "ECLINICALMEDICINE":"LANCET eCLINICALMEDICINE",
+ "ISCIENCE":"iSCIENCE",
+ "HYPERTENSION (DALLAS, TEX. : 1979)":"HYPERTENSION",
+ "CELL CYCLE (GEORGETOWN, TEX.)":"CELL CYCLE",
+ "CARDIOVASCULAR DIABETOLOGY. ENDOCRINOLOGY REPORTS":"CARDIOVASCULAR DIABETOLOGY - ENDOCRINOLOGY REPORTS",
+ "NPJ METABOLIC HEALTH AND DISEASE":"NPJ METABOLIC HEALTH AND DISEASE (NATURE PORTFOLIO JOURNAL)",
+ "HYPERTENSION RESEARCH : OFFICIAL JOURNAL OF THE JAPANESE SOCIETY OF HYPERTENSION":"HYPERTENSION RESEARCH",
+ "CELLULAR AND MOLECULAR LIFE SCIENCES : CMLS":"CELLULAR AND MOLECULAR LIFE SCIENCES",
+ "MOLECULAR MEDICINE (CAMBRIDGE, MASS.)":"MOLECULAR MEDICINE",
+ "THE LANCET. HEALTHY LONGEVITY":"THE LANCET HEALTHY LONGEVITY",
+ "THE LANCET. DIABETES & ENDOCRINOLOGY":"THE LANCET DIABETES & ENDOCRINOLOGY",
+ "INTERNATIONAL JOURNAL OF CARDIOLOGY. HEART & VASCULATURE":"INTERNATIONAL JOURNAL OF CARDIOLOGY - HEART & VASCULATURE",
+ "ERJ OPEN RESEARCH":"EUROPEAN RESPIRATORY SOCIETY OPEN RESEARCH",
+ "EUROPEAN HEART JOURNAL. CARDIOVASCULAR PHARMACOTHERAPY":"EUROPEAN HEART JOURNAL - CARDIOVASCULAR PHARMACOTHERAPY",
+ "JOURNAL OF ALZHEIMER'S DISEASE : JAD":"JOURNAL OF ALZHEIMER'S DISEASE",
+ "ANTIOXIDANTS (BASEL, SWITZERLAND)":"ANTIOXIDANTS",
+ "BIOENGINEERING (BASEL, SWITZERLAND)":"BIOENGINEERING",
+ "PNAS":"PNAS USA"
+};
+
 async function fetchPubMed() {
+  const esearch =
+    `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
 
-  const searchURL =
-    "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi" +
-    "?db=pubmed&term=Santulli%20G[Author]&retmode=json&usehistory=y&retmax=0";
-
-  const searchData = await (await fetch(searchURL)).json();
-  const total = parseInt(searchData.esearchresult.count);
-  const webenv = searchData.esearchresult.webenv;
-  const queryKey = searchData.esearchresult.querykey;
-
-  const batchSize = 200;
-  let articles = [];
-
-  for (let i = 0; i < total; i += batchSize) {
-    const fetchURL =
-      "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi" +
-      `?db=pubmed&query_key=${queryKey}&WebEnv=${webenv}&retstart=${i}&retmax=${batchSize}&retmode=xml`;
-
-    const xml = new DOMParser()
-      .parseFromString(await (await fetch(fetchURL)).text(),"text/xml");
-
-    articles.push(...xml.querySelectorAll("PubmedArticle"));
-  }
+  const s = await (await fetch(esearch)).json();
+  const webenv = s.esearchresult.webenv;
+  const key = s.esearchresult.querykey;
+  const total = parseInt(s.esearchresult.count);
 
   let html = "<ul>";
+  const step = 200;
 
-  articles.forEach(a => {
-    const title = a.querySelector("ArticleTitle")?.textContent || "";
-    const journal = a.querySelector("Journal > Title")?.textContent || "";
-    const year = a.querySelector("PubDate > Year")?.textContent || "";
-    const authors = [...a.querySelectorAll("Author")]
-      .map(x => `${x.querySelector("LastName")?.textContent} ${x.querySelector("Initials")?.textContent}`)
-      .join(", ")
-      .replace(/Santulli G/g,"<u>Santulli G</u>");
+  for (let i=0; i<total; i+=step) {
+    const efetch =
+      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
 
-    const doi = [...a.querySelectorAll("ArticleId")]
-      .find(x => x.getAttribute("IdType")==="doi")?.textContent;
+    const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(),"text/xml");
 
-    html += `
-      <li>
-        <strong>${title}</strong><br>
-        <em>${authors}</em><br>
-        <strong class="journal">${journal.toUpperCase()}</strong> (${year})
-        ${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
-      </li>`;
-  });
+    xml.querySelectorAll("PubmedArticle").forEach(a => {
+      const pmid = a.querySelector("PMID")?.textContent;
+      const title = a.querySelector("ArticleTitle")?.textContent || "";
+      const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
+
+      let journal = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
+      if (replacements[journal]) journal = replacements[journal];
+
+      const authors = [...a.querySelectorAll("Author")]
+        .map(x => `${x.querySelector("ForeName")?.textContent || ""} ${x.querySelector("LastName")?.textContent || ""}`)
+        .join(", ")
+        .replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
+
+      const doi = [...a.querySelectorAll("ArticleId")]
+        .find(x => x.getAttribute("IdType")==="doi")?.textContent;
+
+      html += `
+        <li>
+          <strong>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank">${title}</a>
+          </strong><br>
+          <em>${authors}</em><br>
+          <strong class="journal">${journal}</strong>. ${year}.
+          ${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
+        </li>`;
+    });
+  }
 
   html += "</ul>";
   document.getElementById("publications").innerHTML = html;
