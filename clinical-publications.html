@@ -137,7 +137,7 @@ document.getElementById("counter").textContent = count;
    PubMed query (CLINICAL)
 --------------------------- */
 const query =
-"((((((Santulli, G[Author] AND (patients[title/abstract]) NOT (corrigendum[Title]) NOT (spider[Title])) NOT (habitat[Title])) NOT (dogs[Title])) NOT introduction[Title]) NOT (correction[Title]))";
+"((((((Santulli, G[Author] AND ((patients[title/abstract]) OR (patient[title/abstract]) OR (aging[title/abstract]) OR (frail[title/abstract]) OR (frailty[title/abstract]) OR (tirzepatide[title/abstract])) NOT (corrigendum[Title]) NOT (spider[Title])) NOT (habitat[Title])) NOT (dogs[Title])) NOT (overproduction[Title])) NOT introduction[Title])) NOT (correction[Title])";
 
 /* ---------------------------
    Journal replacements
